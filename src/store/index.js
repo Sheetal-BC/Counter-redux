@@ -1,43 +1,47 @@
-import { createStore } from 'redux';
+import {createStore} from 'redux';
 
-const redux = require('redux');
-
-const counterReducer = (state = {counter:0}, action) => {
-//    if(action.type === 'increment2x'){
-   
-//     return {
-//         counter:state.counter + 1,
-//     }
-// }
-
-// if (action.type === 'decrement'){
-//     return {
-//         counter:state.counter - 1
-//     } 
-// }
-if(action.type === 'increment'){
+const counterReducer = (state = { counter: 0 }, action) => {
+  if (action.type === 'increment') {
     return {
-        counter: state.counter + 2,
+      counter: state.counter + 1
     };
-}
+  }
 
-if(action.type === 'decrement') {
-    return{
-        counter: state.counter - 2,
+  if (action.type === 'decrement') {
+    return {
+      counter: state.counter - 1
     };
-}
-return state;
-}
+  }
+
+  if (action.type === 'incrementBy2x') {
+    return {
+      counter: state.counter + 2
+    };
+  }
+
+
+  if (action.type === 'decrementBy2x') {
+    return {
+      counter: state.counter - 2
+    };
+  }
+
+  if (action.type === 'incrementBy5x') {
+    return {
+      counter: state.counter + 5
+    };
+  }
+
+
+  if (action.type === 'decrementBy5x') {
+    return {
+      counter: state.counter - 5
+    };
+  }
+
+  return state;
+};
+
 const store = createStore(counterReducer);
- 
+
 export default store;
-
-const counterSubscriber = () => {
-     const latestState = store.getState();
-     console.log(latestState)
-}
-
-store.subscribe(counterSubscriber);
-
-store.dispatch({type: 'increment'});
-store.dispatch({type: 'decrement'});
